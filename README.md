@@ -8,11 +8,13 @@ Important variables are kept in a `.env` file at the base of the project. Settin
 - `cd /path/to/slackbots/`
 - `touch .env && nano .env`
 - Some common variables:
-    - SLACK_TOKEN=xxxxx
-    - SLACK_BOT_TOKEN=xxxxx
-    - SLACK_CLIENT_ID=xxxxx
-    - SLACK_CLIENT_SECRET=xxxxx
-    - SLACK_WEBHOOK_URL=xxxxx
+    ```
+    SLACK_TOKEN=xxxxx
+    SLACK_BOT_TOKEN=xxxxx
+    SLACK_CLIENT_ID=xxxxx
+    SLACK_CLIENT_SECRET=xxxxx
+    SLACK_WEBHOOK_URL=xxxxx
+    ```
 
 Below is a list of all of the bots in the project
 
