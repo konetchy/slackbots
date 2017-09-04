@@ -19,8 +19,8 @@ rtm.on(RTM_EVENTS.MESSAGE, function handleRtmMessage(message) {
         return false;
     }
 
-    setNumberOfLines();
-    setStartingPOint();
+    setNumberOfLines(messageText);
+    setStartingPoint(messageText);
 
     fs.readFile(LOG_FILE, 'utf8', function(err, contents) {
         var logFile = trimLogsLines(contents);
