@@ -1,6 +1,6 @@
 # slackbots
 
-# Bots
+## Setting up
 
 Bot's are kept running using *forever*. *forever* can be installed using `npm install forever -g`
 Important variables are kept in a `.env` file at the base of the project. Setting up this file goes like this:
@@ -15,6 +15,8 @@ Important variables are kept in a `.env` file at the base of the project. Settin
     SLACK_CLIENT_SECRET=xxxxx
     SLACK_WEBHOOK_URL=xxxxx
     ```
+
+## Bots
 
 Below is a list of all of the bots in the project
 
