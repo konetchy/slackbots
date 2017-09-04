@@ -26,7 +26,7 @@ rtm.on(RTM_EVENTS.MESSAGE, function handleRtmMessage(message) {
         var logFile = trimLogsLines(contents);
 
         rtm.sendMessage(
-            "Here are your deployment logs ```" + logFile + "```",
+            "Here are your logs ```" + logFile + "```",
             message.channel
         );
     });
@@ -37,24 +37,17 @@ function trimLogsLines(logFile) {
         return logFile;
     }
 
-    var i;
     var lines = logFile.split("\n");
+    var logFile = '';
 
-    switch (startingPoint) {
-        case 'start':
-            var i = 0;
-            var updateI = function() { i++ };
-            var verifyI = function() { return i < numberOfLines; };
-            break;
-        case 'end':
-            var i = lines.length - 1;
-            var updateI = function() { i-- };
-            var verifyI = function() { return i > lines.length - (numberOfLines+1); };
-            break;
-    }
-
-    for (logFile = ''; verifyI(); updateI()) {
-        logFile += lines[i] + "\n";
+    if (startingPoint == 'start') {
+        for (var i = 0; i < numberOfLines; i++) {
+            logFile += lines[i] + "\n";
+        }
+    } else {
+        for (var i = (lines.length - 1); i < (lines.length - 1) - numberOfLines; i--) {
+            logFiles += lines[i] + "\n";
+        }
     }
 
     return logFile;
