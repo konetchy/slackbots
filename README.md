@@ -20,9 +20,19 @@ Below is a list of all of the bots in the project
 
 ### Return Logs
 
+Dumps a list of the logs when a user types `Dump logs.` to the bot as a direct message or in a channel that the bot is authorized in.
+
+**Examples**
+
+- `Dump logs.` returns all of the logs as a message.
+- `Dump 10 lines of logs.` returns the last 10 lines of the logs.
+- `Dump first 10 lines of logs.` returns the first 10 lines of the logs.
+
+**Starting the bot**
+
 `cd /path/to/slackbots/ && forever start return_logs/index.js`
 
-Permissions needed:
+**Permissions needed**
 
 - bot
 - incoming-webhook
