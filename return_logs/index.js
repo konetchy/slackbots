@@ -38,7 +38,7 @@ function trimLogsLines(logFile) {
     }
 
     var i;
-    var lines = contents.split("\n");
+    var lines = logFile.split("\n");
 
     switch (startingPoint) {
         case 'start':
