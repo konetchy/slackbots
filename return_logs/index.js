@@ -32,21 +32,28 @@ rtm.on(RTM_EVENTS.MESSAGE, function handleRtmMessage(message) {
     });
 });
 
+rtm.start();
+
 function trimLogsLines(logFile) {
     if (numberOfLines == -1) {
         return logFile;
     }
 
-    var lines = logFile.split("\n");
-    var logFile = '';
+    var lines = logFile.match(/[^\r\n]+/g);
+
+	if (numberOfLines >= lines.length) {
+		return logFile;
+	}
+
+	logFile = '';
 
     if (startingPoint == 'start') {
         for (var i = 0; i < numberOfLines; i++) {
             logFile += lines[i] + "\n";
         }
     } else {
-        for (var i = (lines.length - 1); i < (lines.length - 1) - numberOfLines; i--) {
-            logFiles += lines[i] + "\n";
+        for (var i = (lines.length - 1); i > (lines.length - 1) - numberOfLines; i--) {
+            logFile += lines[i] + "\n";
         }
     }
 
@@ -60,7 +67,7 @@ function setNumberOfLines(messageText) {
         return;
     }
 
-    var textArr = messageText.substring(0,7).split(' ');
+    var textArr = messageText.substring(0,linesIndex).trim().split(' ');
     var numberGiven = Number(textArr[textArr.length - 1]);
 
     if (isNaN(numberGiven)) {
@@ -73,7 +80,7 @@ function setNumberOfLines(messageText) {
 }
 
 function setStartingPoint(messageText) {
-    if (messageText.indexOf('first') && messageText.indexOf('line')) {
+    if (messageText.indexOf('first') != -1 && messageText.indexOf('line') != -1) {
         startingPoint = 'start';
     } else {
         startingPoint = 'end';
@@ -85,4 +92,3 @@ function verifyMessageTrigger(messageText) {
     return (messageText.indexOf('dump') != -1 && messageText.indexOf('logs') != -1);
 }
 
-rtm.start();
